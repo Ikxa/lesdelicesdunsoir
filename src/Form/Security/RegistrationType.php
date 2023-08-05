@@ -4,6 +4,7 @@ namespace App\Form\Security;
 
 use App\Entity\Security\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,7 +31,12 @@ class RegistrationType extends AbstractType
                     'first_options' => ['label' => 'Password'],
                     'second_options' => ['label' => 'Repeat Password'],
                 ]
-            );
+            )
+            ->add(
+                'email',
+                EmailType::class
+            )
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
