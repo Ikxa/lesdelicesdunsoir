@@ -12,7 +12,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: "integer")]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true, nullable: false)]
@@ -24,7 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var array<string>
      */
-    #[ORM\Column(type: "json", nullable: false)]
+    #[ORM\Column(type: 'json', nullable: false)]
     private array $roles;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
