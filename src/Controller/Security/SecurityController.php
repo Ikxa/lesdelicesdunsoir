@@ -41,12 +41,10 @@ class SecurityController extends AbstractController
         $form = $this->createForm(RegistrationType::class, $user)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword(
-                $encoder->hashPassword(
-                    $user,
-                    $user->getPassword()
-                )
-            );
+            $user
+                ->setPassword($encoder->hashPassword($user, $user->getPassword()))
+                ->setRoles(['ROLE_CUSTOMER'])
+            ;
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();

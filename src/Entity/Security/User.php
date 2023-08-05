@@ -16,19 +16,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true, nullable: false)]
-    private ?string $username = null;
+    private string $username;
 
-    /**
-     * @var string|null The hashed password
-     */
-    #[ORM\Column(type: "string", length: 255, nullable: false)]
-    private ?string $password = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private string $password;
 
     /**
      * @var array<string>
      */
     #[ORM\Column(type: "json", nullable: false)]
     private array $roles;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private string $email;
 
     public function getId(): ?int
     {
@@ -87,9 +87,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @param string[] $roles
      */
-    public function setRoles(array $roles): self
+    public function setRoles(array $roles): static
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
 
         return $this;
     }
