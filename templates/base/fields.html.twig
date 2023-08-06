@@ -1,0 +1,14 @@
+{% block form_row %}
+  <div>
+    {{- form_label(form) -}}
+    {{- form_widget(form) -}}
+
+    {% if form_errors(form) %}
+      <div class="mt-1 text-red-600 text-sm">
+        {% for error in form_errors(form) %}
+          {{ error.message }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
